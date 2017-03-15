@@ -160,6 +160,14 @@
 #' p + geom_violin() + geom_sina(scale = FALSE)
 NULL
 
+.has_groups <- function(data) {
+    # If no group aesthetic is specified, all values of the group column equal to
+    # -1L. On the other hand, if a group aesthetic is specified, all values
+    # are different from -1L (since they are a result of plyr::id()). NA is
+    # returned for 0-row data frames.
+    data$group[1L] != -1L
+}
+
 #' @rdname ggforce-extensions
 #' @format NULL
 #' @usage NULL
@@ -452,12 +460,4 @@ bin_breaks_bins <- function(x_range, bins = 30, center = NULL,
 
   bin_breaks_width(x_range, width, boundary = boundary, center = center,
                    closed = closed)
-}
-
-.has_groups <- function(data) {
-    # If no group aesthetic is specified, all values of the group column equal to
-    # -1L. On the other hand, if a group aesthetic is specified, all values
-    # are different from -1L (since they are a result of plyr::id()). NA is
-    # returned for 0-row data frames.
-    data$group[1L] != -1L
 }
