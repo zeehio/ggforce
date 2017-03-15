@@ -167,6 +167,7 @@ NULL
     # returned for 0-row data frames.
     data$group[1L] != -1L
 }
+has_groups <- .has_groups
 
 #' @rdname ggforce-extensions
 #' @format NULL
